@@ -1,0 +1,53 @@
+name: bicep
+on:
+  push:
+    branches:
+      - main
+env:
+  location: 'westeurope'
+  resourceGroupName: 'gouravfnc-rgc'
+  tenantId: 'c49cfb29-401b-48d5-8f29-f0e093065ffc'
+  appServicePlanName : 'gouravtestqv'
+  kvSku: 'S1'
+  kind: 'linix'
+
+
+permissions:
+      id-token: write
+      contents: read
+
+jobs: 
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v3
+      with:
+        ref: main
+
+    - name: 'Az CLI login'
+      uses: azure/login@v1
+      with:
+          client-id: ${{ secrets.AZURE_CLIENT }}          tenant-id: ${{ secrets.AZURE_TENANT_ID }}          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}    - name: 'Run Azure CLI commands'
+      run: |
+          az account show
+          az group list
+          pwd
+          az group create -l westeurope -n gouravfnc-rgc
+              - name: bicep-build-output
+      uses: Azure/bicep-build-action@v1.0.1
+      with:
+        bicepFilePath: AppServicePlan.bicep
+        outputFilePath: azuredeploy.json
+
+    - name: Az CLI Create Resource Group
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az group create --name ${{ env.resourceGroupName }} --location ${{ env.location }}        - name: Deploy Azure Resource Manager (ARM) Template
+      uses: Azure/arm-deploy@v1
+      with:
+        scope: 'resourcegroup'
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}        resourceGroupName: ${{ env.resourceGroupName }}        parameters: location=${{ env.location }} tenantId=${{ env.tenantId }} keyVaultName=${{ env.keyVaultName }} logAnalyticsName=${{ env.logAnalyticsName }} applicationInsightsName=${{ env.applicationInsightsName }} diagnosticsName=${{ env.diagnosticsName }} kvSku=${{ env.kvSku }}        template: ./azuredeploy.json
