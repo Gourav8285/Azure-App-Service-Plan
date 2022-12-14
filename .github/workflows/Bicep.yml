@@ -57,6 +57,5 @@ jobs:
         scope: 'resourcegroup'
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}        
         resourceGroupName: ${{ env.resourceGroupName }}        
-        parameters: location=${{ env.location }} 
-        tenantId=${{ env.tenantId }}      
+        parameters: location=${{ env.location }} tenantId=${{ env.tenantId }}      
         template: ./azuredeploy.json
