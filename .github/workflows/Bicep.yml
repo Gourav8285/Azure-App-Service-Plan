@@ -28,11 +28,11 @@ jobs:
 
     - name: 'Az CLI login'
       uses: azure/login@v1
-      with:
-          client-id: ${{ secret.AZURE_AD_CLIENT_ID }}
+      with:client-id: ${{ secret.AZURE_AD_CLIENT_ID }}
           tenant-id: ${{ secret.AZURE_AD_TENANT_ID }}          
           subscription-id: ${{ secret.AZURE_SUBSCRIPTION_ID }}    
-          - name: 'Run Azure CLI commands'
+          
+    - name: 'Run Azure CLI commands'
       
       run: |
           az account show
@@ -54,4 +54,8 @@ jobs:
       uses: Azure/arm-deploy@v1
       with:
         scope: 'resourcegroup'
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}        resourceGroupName: ${{ env.resourceGroupName }}        parameters: location=${{ env.location }} tenantId=${{ env.tenantId }} keyVaultName=${{ env.keyVaultName }} logAnalyticsName=${{ env.logAnalyticsName }} applicationInsightsName=${{ env.applicationInsightsName }} diagnosticsName=${{ env.diagnosticsName }} kvSku=${{ env.kvSku }}        template: ./azuredeploy.json
+        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}        
+        resourceGroupName: ${{ env.resourceGroupName }}        
+        parameters: location=${{ env.location }} 
+        tenantId=${{ env.tenantId }}      
+        template: ./azuredeploy.json
