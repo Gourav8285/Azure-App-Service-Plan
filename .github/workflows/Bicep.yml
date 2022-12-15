@@ -43,7 +43,7 @@ jobs:
     - name: bicep-build-output
       uses: Azure/bicep-build-action@v1.0.1
       with:
-        bicepFilePath: AppServicePlan/AppServicePlan.bicep
+        bicepFilePath: AppServicePlan.bicep
         outputFilePath: azuredeploy.json
 
     - name: Az CLI Create Resource Group
