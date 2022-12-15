@@ -7,7 +7,7 @@ env:
   location: 'westeurope'
   resourceGroupName: 'gouravfnc-rgc'
   tenantId: 'c49cfb29-401b-48d5-8f29-f0e093065ffc'
-  appServicePlanName : 'gouravtes080'
+  appServicePlanName : 'gouravtes98'
   kvSku: 'S1'
   kind: 'linux'
 
