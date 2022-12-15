@@ -8,7 +8,7 @@ env:
   resourceGroupName: 'gouravfnc-rgc'
   tenantId: 'c49cfb29-401b-48d5-8f29-f0e093065ffc'
   appServicePlanName : 'gouravtes98'
-  kvSku: 'S1'
+  Sku: 'S1'
   kind: 'linux'
 
 
@@ -58,5 +58,5 @@ jobs:
         scope: 'resourcegroup'
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}        
         resourceGroupName: ${{ env.resourceGroupName }}        
-        parameters: location=${{ env.location }} tenantId=${{ env.tenantId }}      
+        parameters: location=${{ env.location }} appServicePlanName=${{ env.appServicePlanName }} sku=${{ env.Sku }} kind=${{ env.kind }}
         template: ./azuredeploy.json
