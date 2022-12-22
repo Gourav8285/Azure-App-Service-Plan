@@ -33,7 +33,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
     reserved: true
   }
   sku:{
-    name:'standard'
+    name:'S1'
   }
 
   tags: union(tags, {
