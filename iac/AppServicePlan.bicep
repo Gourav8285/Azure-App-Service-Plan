@@ -1,6 +1,5 @@
 targetScope = 'resourceGroup'
 
-param sku string
 param resourcetype string
 param environment string
 param kind string
