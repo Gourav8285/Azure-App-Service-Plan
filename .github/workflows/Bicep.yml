@@ -5,7 +5,7 @@ on:
       - main
 env:
   kind: 'linux'
-  RESOURCE_TYPE: 'appcs'
+  RESOURCE_TYPE: 'asp'
   ENVIRONMENT: 'dev'
   INSTANCE: '1'
 
