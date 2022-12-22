@@ -1,6 +1,5 @@
 targetScope = 'subscription'
 
-param sku string
 param resourcetype string
 param environment string
 param kind string
@@ -47,7 +46,6 @@ module appServicePlan 'AppServicePlan.bicep' = {
     kind: kind
     region: region
     resourcetype: resourcetype
-    sku: sku
     tags: tags
   }
 }

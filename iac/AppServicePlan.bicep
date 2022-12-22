@@ -33,9 +33,10 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
   properties: {
     reserved: true
   }
-  sku: {
-    name: sku
+  sku:{
+    name:'standard'
   }
+
   tags: union(tags, {
     Enviroment: '${envtag[environment].envtag}'
   })
