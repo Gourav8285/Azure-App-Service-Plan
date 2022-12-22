@@ -4,12 +4,11 @@ on:
     branches:
       - main
 env:
-  location: 'westeurope'
-  resourceGroupName: 'gouravfnc-rgc'
-  tenantId: 'c49cfb29-401b-48d5-8f29-f0e093065ffc'
-  appServicePlanName : 'gouravtes98'
   Sku: 'S1'
   kind: 'linux'
+  RESOURCE_TYPE: 'appcs'
+  ENVIRONMENT: 'dev'
+  INSTANCE: '1'
 
 
 permissions:
@@ -19,7 +18,7 @@ permissions:
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
-    environment: Dev
+    environment: development
     steps:
     - name: 'Checkout'
       uses: actions/checkout@v3
@@ -36,27 +35,8 @@ jobs:
     - name: 'Run Azure CLI commands'
       
       run: |
-          az account show
-          az group list
-          pwd
-          az group create -l westeurope -n gouravfnc-rgc
-    - name: bicep-build-output
-      uses: Azure/bicep-build-action@v1.0.1
-      with:
-        bicepFilePath: AppServicePlan.bicep
-        outputFilePath: azuredeploy.json
-
-    - name: Az CLI Create Resource Group
-      uses: Azure/CLI@v1
-      with:
-        inlineScript: |
-          #!/bin/bash
-          az group create --name ${{ env.resourceGroupName }} --location ${{ env.location }}        
-    - name: Deploy Azure Resource Manager (ARM) Template
-      uses: Azure/arm-deploy@v1
-      with:
-        scope: 'resourcegroup'
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}        
-        resourceGroupName: ${{ env.resourceGroupName }}        
-        parameters: location=${{ env.location }} appServicePlanName=${{ env.appServicePlanName }} sku=${{ env.Sku }} kind=${{ env.kind }}
-        template: ./azuredeploy.json
+        westeurope=westeurope$RESOURCE_TYPE$ENVIRONMENT$INSTANCE
+        az bicep build --stdout --file './iac/main.bicep'
+        az deployment sub validate --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE tags=@./iac/tags.json
+        az deployment sub create --what-if --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE tags=@./iac/tags.json
+        az deployment sub create --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE tags=@./iac/tags.json
