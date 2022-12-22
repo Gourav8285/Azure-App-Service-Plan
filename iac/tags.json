@@ -1,10 +1,10 @@
 {
-    "Cost Center": "03.70",
-    "Business Unit": "Platform and Support",
+    "Cost Center": "",
+    "Business Unit": "",
     "Function": "n/a",
     "Environment": "",
-    "Component": "Azure App Configuration",
+    "Component": "Azure App Service Plan",
     "Priority": "High",
     "Service Plan": "n/a",
-    "Reference": "GAS-160"
+    "Reference": ""
 }

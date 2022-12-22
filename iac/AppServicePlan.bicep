@@ -5,7 +5,7 @@ param environment string
 param region string
 param instance string
 param tags object
-param skuid string
+param sku string
 
 var locid = {
   we: {
@@ -33,7 +33,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
     reserved: true
   }
   sku:{
-    name:skuid
+    name:sku
   }
 
   tags: union(tags, {

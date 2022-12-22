@@ -5,7 +5,7 @@ param environment string
 param region string
 param instance string
 param tags object
-param skuid string
+param sku string
 
 var locid = {
   we: {
@@ -46,6 +46,6 @@ module appServicePlan 'AppServicePlan.bicep' = {
     region: region
     resourcetype: resourcetype
     tags: tags
-    skuid:skuid
+     sku:sku
   }
 }

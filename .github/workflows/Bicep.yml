@@ -4,7 +4,7 @@ on:
     branches:
       - main
 env:
-  skuid: 'S1'
+  sku: 'S1'
   RESOURCE_TYPE: 'asp'
   ENVIRONMENT: 'dev'
   INSTANCE: '1'
@@ -36,6 +36,6 @@ jobs:
       run: |
         westeurope=westeurope$RESOURCE_TYPE$ENVIRONMENT$INSTANCE
         az bicep build --stdout --file './iac/main.bicep'
-        az deployment sub validate --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE skuid=$skuid tags=@./iac/tags.json
-        az deployment sub create --what-if --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE skuid=$skuid tags=@./iac/tags.json
-        az deployment sub create --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE skuid=$skuid tags=@./iac/tags.json
+        az deployment sub validate --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE sku=$sku tags=@./iac/tags.json
+        az deployment sub create --what-if --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE sku=$sku tags=@./iac/tags.json
+        az deployment sub create --name $westeurope --location 'westeurope' --template-file './iac/main.bicep' --parameters resourcetype=$RESOURCE_TYPE environment=$ENVIRONMENT region='we' instance=$INSTANCE sku=$sku tags=@./iac/tags.json
