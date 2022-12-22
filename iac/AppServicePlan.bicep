@@ -16,7 +16,7 @@ var locid = {
   }
 }
 
-var appServicePlanName = '${resourcetype}swo${environment}${region}${instance}}'
+var appServicePlanName = '${resourcetype}swo${environment}${region}${instance}'
 var envtag = {
   dev: {
     envtag : 'development'
