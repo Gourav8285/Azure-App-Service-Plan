@@ -2,10 +2,10 @@ targetScope = 'subscription'
 
 param resourcetype string
 param environment string
-param kind string
 param region string
 param instance string
 param tags object
+param skuid string
 
 var locid = {
   we: {
@@ -43,9 +43,9 @@ module appServicePlan 'AppServicePlan.bicep' = {
   params: {
     environment: environment
     instance: instance
-    kind: kind
     region: region
     resourcetype: resourcetype
     tags: tags
+    skuid:skuid
   }
 }

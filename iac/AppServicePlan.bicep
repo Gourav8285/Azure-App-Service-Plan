@@ -2,10 +2,10 @@ targetScope = 'resourceGroup'
 
 param resourcetype string
 param environment string
-param kind string
 param region string
 param instance string
 param tags object
+param skuid string
 
 var locid = {
   we: {
@@ -33,11 +33,11 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-06-01' = {
     reserved: true
   }
   sku:{
-    name:'S1'
+    name:skuid
   }
 
   tags: union(tags, {
     Enviroment: '${envtag[environment].envtag}'
   })
-  kind: kind
+  kind: 'Linux'
 }
