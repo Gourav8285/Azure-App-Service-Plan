@@ -49,3 +49,14 @@ module appServicePlan 'AppServicePlan.bicep' = {
      sku:sku
   }
 }
+module appServicePlan2 'AppServicePlan2.bicep' = {
+  scope: resourcegroup
+  name: resourcetype
+  params: {
+    environment: environment
+    instance: instance
+    region: region
+    resourcetype: resourcetype
+    tags: tags
+     sku:sku
+  }}
