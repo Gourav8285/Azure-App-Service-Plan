@@ -3,7 +3,7 @@ targetScope = 'resourceGroup'
 param resourcetype string
 param environment string
 param region string
-param instance string
+param instance1 string
 param tags object
 param sku string
 
@@ -16,7 +16,7 @@ var locid = {
   }
 }
 
-var appServicePlanName = '${resourcetype}swo${environment}${region}${instance}'
+var appServicePlanName = '${resourcetype}swo${environment}${region}${instance1}'
 var envtag = {
   dev: {
     envtag : 'development'

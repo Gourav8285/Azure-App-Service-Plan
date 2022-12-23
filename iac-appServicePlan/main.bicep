@@ -3,7 +3,8 @@ targetScope = 'subscription'
 param resourcetype string
 param environment string
 param region string
-param instance string
+param instance1 string
+param instance2 string
 param tags object
 param sku string
 
@@ -16,7 +17,8 @@ var locid = {
   }
 }
 
-var rgname = 'rgswo${resourcetype}${environment}${region}${instance}'
+var rgname1 = 'rgswo${resourcetype}${environment}${region}${instance1}'
+var rgname2 = 'rgswo${resourcetype}${environment}${region}${instance2}'
 var location = '${locid[region].location}'
 var envtag = {
   dev: {
@@ -28,7 +30,7 @@ var envtag = {
 }
 
 resource resourcegroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
-  name: rgname
+  name: rgname1
   location: location
   tags: union(tags,{
     Environment : '${envtag[environment].envtag}'
@@ -37,12 +39,23 @@ resource resourcegroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   properties:{}
 }
 
+resource resourcegroup2 'Microsoft.Resources/resourceGroups@2022-09-01' = {
+  name: rgname2
+  location: location
+  tags: union(tags,{
+    Environment : '${envtag[environment].envtag}'
+  })
+  managedBy:''
+  properties:{}
+}
+
+
 module appServicePlan 'AppServicePlan.bicep' = {
   scope: resourcegroup
   name: resourcetype
   params: {
     environment: environment
-    instance: instance
+    instance1:instance1
     region: region
     resourcetype: resourcetype
     tags: tags
@@ -54,7 +67,7 @@ module appServicePlan2 'AppServicePlan2.bicep' = {
   name: resourcetype
   params: {
     environment: environment
-    instance: instance
+    instance2: instance2
     region: region
     resourcetype: resourcetype
     tags: tags
