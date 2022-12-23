@@ -63,7 +63,7 @@ module appServicePlan 'AppServicePlan.bicep' = {
   }
 }
 module appServicePlan2 'AppServicePlan2.bicep' = {
-  scope: resourcegroup
+  scope: resourcegroup2
   name: resourcetype
   params: {
     environment: environment
