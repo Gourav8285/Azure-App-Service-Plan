@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "Message 1"
+          echo "Message 4"
