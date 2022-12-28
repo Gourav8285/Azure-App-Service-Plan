@@ -7,7 +7,7 @@ resource functionApp 'Microsoft.Web/sites@2022-03-01' existing = {
   name: functionAppName
 }
 
-resource functionAppAppsettings 'Microsoft.Web/sites/config@2018-11-01' = {
+resource functionAppAppsettings 'Microsoft.Web/sites/config@2022-03-01' = {
   name: 'appsettings'
   parent:functionApp
   properties: {
