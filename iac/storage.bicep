@@ -22,7 +22,6 @@ var envtag = {
   }
 }
 
-
 var stName = 'st${resourcetype}swo${environment}${region}${instance}'
 resource azStorageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: stName
@@ -54,4 +53,7 @@ resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-prev
     principalType: 'ServicePrincipal'
   }
 }
-output azStorageAccountName object = azStorageAccount
+// output azStorageAccountName object = azStorageAccount
+var blobStorageConnectionString = 'DefaultEndpointsProtocol=https;AccountName=${azStorageAccount.name};EndpointSuffix=${az.environment().suffixes.storage};AccountKey=${listKeys(azStorageAccount.id, azStorageAccount.apiVersion).keys[0].value}'
+
+output blobStorageConnectionString string = blobStorageConnectionString

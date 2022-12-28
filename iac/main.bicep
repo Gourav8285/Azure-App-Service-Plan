@@ -94,7 +94,7 @@ module appsetting 'funcappsetting.bicep' = {
   scope:resourcegroup
   params: {
     appInsightsKey: appinsi.outputs.appInsightsKey
-    azStorageAccount: storage.outputs.azStorageAccountName
+    blobStorageConnectionString: storage.outputs.blobStorageConnectionString
     functionAppName: functionAppName
   }
   dependsOn:[

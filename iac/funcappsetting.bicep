@@ -1,6 +1,7 @@
 param functionAppName string
-param azStorageAccount object
+// param azStorageAccount object
 param appInsightsKey string
+param blobStorageConnectionString string
 
 resource functionApp 'Microsoft.Web/sites@2022-03-01' existing = {
   name: functionAppName
@@ -11,8 +12,8 @@ resource functionAppAppsettings 'Microsoft.Web/sites/config@2018-11-01' = {
   parent:functionApp
   properties: {
     CustomerApiKey: 'This is the function app setting'
-    AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=${azStorageAccount.name};EndpointSuffix=${az.environment().suffixes.storage};AccountKey=${listKeys(azStorageAccount.id, azStorageAccount.apiVersion).keys[0].value}'
-    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: 'DefaultEndpointsProtocol=https;AccountName=${azStorageAccount.name};EndpointSuffix=${az.environment().suffixes.storage};AccountKey=${listKeys(azStorageAccount.id, azStorageAccount.apiVersion).keys[0].value}'
+    AzureWebJobsStorage: blobStorageConnectionString
+    WEBSITE_CONTENTAZUREFILECONNECTIONSTRING: blobStorageConnectionString
     WEBSITE_CONTENTSHARE: toLower(functionAppName)
     FUNCTIONS_EXTENSION_VERSION: '~3'
     APPINSIGHTS_INSTRUMENTATIONKEY: appInsightsKey
