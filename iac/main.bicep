@@ -51,7 +51,7 @@ module storage 'storage.bicep' = {
 
 module hostingplanmodule 'hostingplan.bicep' =  {
   name: functionAppName
-  scope:resourcegroup
+  scope: resourcegroup
   params: {
     environment: environment
     instance: instance
@@ -84,6 +84,9 @@ module appinsi 'appinsight.bicep' = {
     region: region
     resourcetype: resourcetype
    }
+   dependsOn:[
+    funcapp
+   ]
 }
 
 module appsetting 'funcappsetting.bicep' = {
@@ -94,4 +97,9 @@ module appsetting 'funcappsetting.bicep' = {
     azStorageAccount: storage.outputs.azStorageAccountName
     functionAppName: functionAppName
   }
+  dependsOn:[
+    storage
+    funcapp
+    appinsi
+  ]
 }
