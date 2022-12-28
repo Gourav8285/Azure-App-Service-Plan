@@ -32,7 +32,7 @@ resource functionAppResource 'Microsoft.Web/sites@2020-12-01' = {
     serverFarmId:serverFarmId
   }
   location: '${locid[region].location}'
-  kind: 'Linux'
+  kind: 'functionapp'
   tags:union(tags, {
     Enviroment: '${envtag[environment].envtag}'
   })
