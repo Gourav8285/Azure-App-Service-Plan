@@ -4,7 +4,7 @@ param appInsightsKey string
 
 
 resource functionAppAppsettings 'Microsoft.Web/sites/config@2018-11-01' = {
-  name: '${functionAppName}/appsettings'
+  name: 'fncswodevwe1/appsettings'
   properties: {
     CustomerApiKey: 'This is the function app setting'
     AzureWebJobsStorage: 'DefaultEndpointsProtocol=https;AccountName=stor198;AccountKey=bnPdgh25X9nhwHx+UK933VDtlly5jx9m4e+sUMurZxSVTxIOHJAJTw/qKqO6s2UTFMpr/hHbAgTV+AStn4M+HQ==;EndpointSuffix=core.windows.net'
