@@ -3,7 +3,7 @@
     "Business Unit": "",
     "Function": "n/a",
     "Environment": "",
-    "Component": "Azure App Service Plan",
+    "Component": "Azure function App",
     "Priority": "High",
     "Service Plan": "n/a",
     "Reference": ""
