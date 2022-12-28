@@ -90,7 +90,7 @@ module appinsi 'appinsight.bicep' = {
 }
 
 module appsetting 'funcappsetting.bicep' = {
-  name: '${functionAppName}/appsettings'
+  name: '$appsettings'
   scope:resourcegroup
   params: {
     appInsightsKey: appinsi.outputs.appInsightsKey
