@@ -18,6 +18,7 @@ var locid = {
 }
 
 var functionAppName = '${resourcetype}swo${environment}${region}${instance}'
+var hostingplanName = 'asp${resourcetype}swo${environment}${region}${instance}'
 var envtag = {
   dev: {
     envtag : 'development'
@@ -50,7 +51,7 @@ module storage 'storage.bicep' = {
   }}
 
 module hostingplanmodule 'hostingplan.bicep' =  {
-  name: functionAppName
+  name: hostingplanName
   scope: resourcegroup
   params: {
     environment: environment
@@ -90,7 +91,7 @@ module appinsi 'appinsight.bicep' = {
 }
 
 module appsetting 'funcappsetting.bicep' = {
-  name: '$appsettings'
+  name: 'appsettings'
   scope:resourcegroup
   params: {
     appInsightsKey: appinsi.outputs.appInsightsKey
