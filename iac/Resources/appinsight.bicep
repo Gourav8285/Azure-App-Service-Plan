@@ -20,7 +20,7 @@ var envtag = {
     envtag : 'production'
   }
 }
-var functionAppName = 'appi${resourcetype}swo${environment}${region}${instance}'
+var functionAppName = 'ai${resourcetype}swo${environment}${region}${instance}'
 resource appInsight 'Microsoft.Insights/components@2020-02-02'= {
   name:functionAppName
   kind:'web'
@@ -29,6 +29,7 @@ resource appInsight 'Microsoft.Insights/components@2020-02-02'= {
     Application_Type:'web'
     Request_Source:'rest'
     Flow_Type:'Bluefield'
+    // WorkspaceResourceId: logAnalyticsWorkspace.id >> TBA
   }
   tags:union(tags, {
     Enviroment: '${envtag[environment].envtag}'})
