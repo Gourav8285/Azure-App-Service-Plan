@@ -4,7 +4,7 @@ param environment string
 param region string
 param instance string
 param tags object
-var functionAppinsiName = '${resourcetype}swo${environment}${region}${instance}'
+var functionAppinsiName = 'aapi${resourcetype}swo${environment}${region}${instance}'
 var stName = 'st${resourcetype}swo${environment}${region}${instance}'
 var rgname = 'rgswo${resourcetype}${environment}${region}${instance}'
 
@@ -96,7 +96,7 @@ module appsetting 'Resources/funcappsetting.bicep' = {
   params: {
     appInsightsKey: appinsi.outputs.appInsightsKey
     blobStorageConnectionString: storage.outputs.blobStorageConnectionString
-    functionAppName: functionAppName
+    functionAppName: toLower(functionAppName)
   }
   dependsOn:[
     storage
