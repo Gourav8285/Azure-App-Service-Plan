@@ -50,7 +50,7 @@ resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-prev
   properties: {
     roleDefinitionId: OwnerRoleDefinition.id
     principalId: principalId
-    principalType:  'ServicePrincipal'
+    principalType: 'managed identity'
   }
 }
 
