@@ -4,7 +4,7 @@ param environment string
 param region string
 param instance string
 param tags object
-var functionAppinsiName = 'aapi${resourcetype}swo${environment}${region}${instance}'
+var functionAppinsiName = 'aiswo${environment}${region}${instance}'
 var stName = 'st${resourcetype}swo${environment}${region}${instance}'
 var rgname = 'rgswo${resourcetype}${environment}${region}${instance}'
 
@@ -18,7 +18,7 @@ var locid = {
 }
 
 var functionAppName = '${resourcetype}swo${environment}${region}${instance}'
-var hostingplanName = 'asp${resourcetype}swo${environment}${region}${instance}'
+var hostingplanName = 'aspswo${environment}${region}${instance}'
 var envtag = {
   dev: {
     envtag : 'development'

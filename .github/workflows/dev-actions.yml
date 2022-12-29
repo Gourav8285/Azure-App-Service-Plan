@@ -6,7 +6,7 @@ on:
 env:
   RESOURCE_TYPE: 'fnc'
   ENVIRONMENT: 'dev'
-  INSTANCE: '1'
+  INSTANCE: '01'
 
 permissions:
       id-token: write

@@ -3,7 +3,7 @@ param environment string
 param region string
 param instance string
 param tags object
-var functionAppName = 'asp${resourcetype}swo${environment}${region}${instance}'
+var hostingPlanName = 'asp${resourcetype}swo${environment}${region}${instance}'
 var locid = {
   we: {
     location : 'westeurope'
@@ -22,7 +22,7 @@ var envtag = {
 }
 
   resource azHostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
-    name: functionAppName
+    name: hostingPlanName
     location: '${locid[region].location}'
     kind: 'linux'
     sku: {
