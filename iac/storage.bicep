@@ -54,7 +54,7 @@ resource roleAssignment 'Microsoft.Authorization/roleAssignments@2020-04-01-prev
   }
 }
 
-resource ContributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
+resource ContributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = {
   scope: azStorageAccount
   name: 'b7e6dc6d-f1e8-4753-8033-0f276bb0955b'
 }
@@ -68,7 +68,7 @@ resource roleAssignment2 'Microsoft.Authorization/roleAssignments@2020-04-01-pre
   }
 }
 
-resource QueueDataContributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
+resource QueueDataContributorRoleDefinition 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' = {
   scope: azStorageAccount
   name: '974c5e8b-45b9-4653-ba55-5f855dd0fb88'
 }
