@@ -3,7 +3,7 @@ param environment string
 param region string
 param instance string
 param tags object
-var functionAppName = '${resourcetype}swo${environment}${region}${instance}'
+var functionAppName = 'asp${resourcetype}swo${environment}${region}${instance}'
 var locid = {
   we: {
     location : 'westeurope'

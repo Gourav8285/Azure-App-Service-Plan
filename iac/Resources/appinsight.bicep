@@ -20,7 +20,7 @@ var envtag = {
     envtag : 'production'
   }
 }
-var functionAppName = 'ap${resourcetype}swo${environment}${region}${instance}'
+var functionAppName = 'appi${resourcetype}swo${environment}${region}${instance}'
 resource appInsight 'Microsoft.Insights/components@2020-02-02'= {
   name:functionAppName
   kind:'web'
