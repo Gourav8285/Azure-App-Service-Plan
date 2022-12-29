@@ -4,7 +4,7 @@ param environment string
 param region string
 param instance string
 param tags object
-var functionAppinsiName = 'ap${resourcetype}swo${environment}${region}${instance}'
+var functionAppinsiName = '${resourcetype}swo${environment}${region}${instance}'
 var stName = 'st${resourcetype}swo${environment}${region}${instance}'
 var rgname = 'rgswo${resourcetype}${environment}${region}${instance}'
 
@@ -38,7 +38,7 @@ resource resourcegroup 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   properties:{}
 }
 
-module storage 'storage.bicep' = {
+module storage 'Resources/storage.bicep' = {
   name: stName
   scope:resourcegroup
   params: {
@@ -50,7 +50,7 @@ module storage 'storage.bicep' = {
     tags: tags
   }}
 
-module hostingplanmodule 'hostingplan.bicep' =  {
+module hostingplanmodule 'Resources/hostingplan.bicep' = {
   name: hostingplanName
   scope: resourcegroup
   params: {
@@ -62,7 +62,7 @@ module hostingplanmodule 'hostingplan.bicep' =  {
   }
 }
 
-module funcapp 'functionapp.bicep' = {
+module funcapp 'Resources/functionapp.bicep' = {
   name:functionAppName
   scope:resourcegroup
   params: {
@@ -75,7 +75,7 @@ module funcapp 'functionapp.bicep' = {
   }
 }
 
-module appinsi 'appinsight.bicep' = {
+module appinsi 'Resources/appinsight.bicep' = {
    name:functionAppinsiName
    scope:resourcegroup
    params: {
@@ -90,7 +90,7 @@ module appinsi 'appinsight.bicep' = {
    ]
 }
 
-module appsetting 'funcappsetting.bicep' = {
+module appsetting 'Resources/funcappsetting.bicep' = {
   name: 'appsettings'
   scope:resourcegroup
   params: {
