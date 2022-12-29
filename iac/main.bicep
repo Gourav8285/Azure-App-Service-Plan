@@ -83,7 +83,6 @@ module appinsi 'Resources/appinsight.bicep' = {
     environment: environment
     instance: instance
     region: region
-    resourcetype: resourcetype
    }
    dependsOn:[
     funcapp

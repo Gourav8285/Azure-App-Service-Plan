@@ -1,4 +1,4 @@
-param resourcetype string
+
 param environment string
 param region string
 param instance string
@@ -20,7 +20,7 @@ var envtag = {
     envtag : 'production'
   }
 }
-var functionAppName = 'ai${resourcetype}swo${environment}${region}${instance}'
+var functionAppName = 'aiswo${environment}${region}${instance}'
 resource appInsight 'Microsoft.Insights/components@2020-02-02'= {
   name:functionAppName
   kind:'web'
